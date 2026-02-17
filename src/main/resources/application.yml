@@ -1,0 +1,19 @@
+warehouse:
+  sensors:
+    temperature:
+      port: 3344
+      threshold: 35
+    humidity:
+      port: 3355
+      threshold: 50
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: warehouse-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
