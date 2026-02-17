@@ -1,14 +1,14 @@
 package com.example.warehouse.strategy;
 
-import com.example.warehouse.config.SensorProperties;
+import com.example.warehouse.config.SensorData;
 import org.junit.jupiter.api.Test;
 
 class TemperatureSensorStrategyTest {
 
     @Test
     void testThresholdExceeded() {
-        SensorProperties props = new SensorProperties();
-        SensorProperties.SensorConfig temp = new SensorProperties.SensorConfig();
+        SensorData props = new SensorData();
+        SensorData.SensorConfig temp = new SensorData.SensorConfig();
         temp.setThreshold(35);
         props.setTemperature(temp);
 

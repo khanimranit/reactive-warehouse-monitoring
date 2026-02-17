@@ -3,17 +3,14 @@ warehouse:
     temperature:
       port: 3344
       threshold: 35
+      simulation:
+        min-value: 30
+        max-value: 39
+        interval-ms: 5000
     humidity:
       port: 3355
       threshold: 50
-
-spring:
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer:
-      group-id: warehouse-group
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      simulation:
+        min-value: 40
+        max-value: 54
+        interval-ms: 7000

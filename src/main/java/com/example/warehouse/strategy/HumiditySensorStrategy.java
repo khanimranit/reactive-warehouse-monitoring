@@ -1,6 +1,6 @@
 package com.example.warehouse.strategy;
 
-import com.example.warehouse.config.SensorProperties;
+import com.example.warehouse.config.SensorData;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,15 +11,16 @@ import org.springframework.stereotype.Component;
 public class HumiditySensorStrategy implements SensorStrategy {
 
     private static final Logger logger = LoggerFactory.getLogger(HumiditySensorStrategy.class);
-    private final SensorProperties props;
+    private final SensorData props;
 
     @Override
     public void checkThreshold(String message) {
         try {
+            message = message.trim();
             String[] parts = message.split(";");
             int value = Integer.parseInt(parts[1].split("=")[1]);
             if (value > props.getHumidity().getThreshold()) {
-                logger.warn("ALARM! Humidity exceeded: {}%", value);
+                logger.error("ALARM! Humidity exceeded: {}%", value);
             } else {
                 logger.info("Humidity reading normal: {}%", value);
             }
