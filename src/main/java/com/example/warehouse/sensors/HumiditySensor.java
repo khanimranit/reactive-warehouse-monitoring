@@ -1,6 +1,7 @@
-package com.example.warehouse.strategy;
+package com.example.warehouse.sensors;
 
 import com.example.warehouse.config.SensorData;
+import com.example.warehouse.strategy.SensorStrategy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component("Humidity")
 @RequiredArgsConstructor
-public class HumiditySensorStrategy implements SensorStrategy {
+public class HumiditySensor implements SensorStrategy {
 
-    private static final Logger logger = LoggerFactory.getLogger(HumiditySensorStrategy.class);
+    private static final Logger logger = LoggerFactory.getLogger(HumiditySensor.class);
     private final SensorData props;
 
     @Override

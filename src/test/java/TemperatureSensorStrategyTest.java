@@ -1,6 +1,7 @@
 package com.example.warehouse.strategy;
 
 import com.example.warehouse.config.SensorData;
+import com.example.warehouse.sensors.TemperatureSensor;
 import org.junit.jupiter.api.Test;
 
 class TemperatureSensorStrategyTest {
@@ -12,7 +13,7 @@ class TemperatureSensorStrategyTest {
         temp.setThreshold(35);
         props.setTemperature(temp);
 
-        TemperatureSensorStrategy strategy = new TemperatureSensorStrategy(props);
+        TemperatureSensor strategy = new TemperatureSensor(props);
         strategy.checkThreshold("sensor_id=t1; value=36"); // should trigger alarm
     }
 }
