@@ -15,9 +15,7 @@ The system reads sensor values, evaluates them against configurable thresholds, 
 - [Configuration](#-configuration)
 - [How It Works](#-how-it-works)
 - [Running the Application](#-running-the-application)
-- [Testing Sensor Messages](#-testing-sensor-messages)
-- [Unit Testing](#-unit-testing)
-- [Future Enhancements](#-future-enhancements)
+
 
 ---
 
@@ -110,7 +108,8 @@ reactive-warehouse-monitoring/
 │   ├── listener/
 │   ├── model/
 │   ├── service/
-│   ├── strategy/
+│   ├── simulator/
+    ├── strategy/
 │   └── ReactiveWarehouseApplication.java
 │
 ├── src/main/resources/
@@ -128,19 +127,22 @@ reactive-warehouse-monitoring/
 Example `application.yml`:
 
 ```yaml
-server:
-  port: 8080
-
-udp:
-  port: 9999
-
-sensor:
-  temperature:
-    min: 5
-    max: 40
-  humidity:
-    min: 20
-    max: 70
+warehouse:
+  sensors:
+    temperature:
+      port: 3344
+      threshold: 35
+      simulation:
+        min-value: 30
+        max-value: 39
+        interval-ms: 5000
+    humidity:
+      port: 3355
+      threshold: 50
+      simulation:
+        min-value: 40
+        max-value: 54
+        interval-ms: 7000
 ```
 
 ---
@@ -180,29 +182,6 @@ mvn clean install
 
 ```bash
 mvn spring-boot:run
-```
-
----
-
-## 🧪 Testing Sensor Messages
-
-You can simulate UDP messages using:
-
-```bash
-echo -n "TEMP:45" | nc -u localhost 9999
-echo -n "HUM:10"  | nc -u localhost 9999
-```
-
-You should see reactive log output indicating threshold status.
-
----
-
-## 🧬 Unit Testing
-
-Run tests with:
-
-```bash
-mvn test
 ```
 
 

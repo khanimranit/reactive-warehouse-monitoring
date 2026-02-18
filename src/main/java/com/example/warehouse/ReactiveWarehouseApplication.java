@@ -1,7 +1,7 @@
 package com.example.warehouse;
 
 import com.example.warehouse.config.SensorData;
-import com.example.warehouse.service.WarehouseListener;
+import com.example.warehouse.listener.WarehouseListener;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,13 +11,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @RequiredArgsConstructor
 @EnableScheduling
-public class WarehouseApplication implements CommandLineRunner {
+public class ReactiveWarehouseApplication implements CommandLineRunner {
 
 	private final WarehouseListener warehouseListener;
 	private final SensorData props;
 
 	public static void main(String[] args) {
-		SpringApplication.run(WarehouseApplication.class, args);
+		SpringApplication.run(ReactiveWarehouseApplication.class, args);
 	}
 
 	@Override

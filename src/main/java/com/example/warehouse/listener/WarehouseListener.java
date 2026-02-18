@@ -1,5 +1,6 @@
-package com.example.warehouse.service;
+package com.example.warehouse.listener;
 
+import com.example.warehouse.service.CentralMonitoringService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
