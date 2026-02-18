@@ -46,22 +46,22 @@ It processes incoming sensor readings using a flexible **Strategy Pattern**, eva
 
 ### High-Level Flow
 
+```
 Warehouse Sensors
-|
-| UDP Messages
-v
+        |
+        | UDP Messages
+        v
 Reactive UDP Listener (WebFlux + Netty)
-|
-v
+        |
+        v
 Sensor Processor (Strategy Pattern)
-|
-v
+        |
+        v
 Threshold Evaluator
-|
-v
+        |
+        v
 Alert Logger
-
-
+```
 
 ---
 
@@ -73,14 +73,15 @@ Alert Logger
 - Publishes events into a `Flux` pipeline
 
 #### 2️⃣ Strategy Pattern
+
 Each sensor type has its own processing logic:
 
+```
 SensorStrategy (interface)
-|
-|--- TemperatureSensor
-|--- HumiditySensor
-
-
+        |
+        |--- TemperatureSensor
+        |--- HumiditySensor
+```
 
 This makes the system:
 - Open for extension
@@ -101,25 +102,24 @@ Logs alerts to console (can be extended to Kafka, DB, Email, etc.)
 
 ## 📁 Project Structure
 
-eactive-warehouse-monitoring/
+```
+reactive-warehouse-monitoring/
 │
 ├── src/main/java/com/example/warehouse
-│ ├── config/
-│ ├── listener/
-│ ├── model/
-│ ├── service/
-│ ├── strategy/
-│ └── ReactiveWarehouseApplication.java
+│   ├── config/
+│   ├── listener/
+│   ├── model/
+│   ├── service/
+│   ├── strategy/
+│   └── ReactiveWarehouseApplication.java
 │
 ├── src/main/resources/
-│ └── application.yml
+│   └── application.yml
 │
 ├── src/test/java/
 │
 └── pom.xml
-
-
-
+```
 
 ---
 
@@ -141,31 +141,69 @@ sensor:
   humidity:
     min: 20
     max: 70
+```
 
+---
 
+## 🔄 How It Works
 
+1. UDP listener receives message:
 
-UDP listener receives message:
-
+```
 TEMP:35
 HUM:55
+```
 
+2. Message is parsed into `SensorReading`
+3. Appropriate strategy is selected
+4. Threshold is evaluated
+5. Alert is logged reactively
 
-Message is parsed into SensorReading
+---
 
-Appropriate strategy is selected
+## ▶️ Running the Application
 
-Threshold is evaluated
+### 1️⃣ Clone the repository
 
-Alert is logged reactively
-
-▶️ Running the Application
-1️⃣ Clone the repository
+```bash
 git clone https://github.com/your-username/reactive-warehouse-monitoring.git
 cd reactive-warehouse-monitoring
+```
 
-2️⃣ Build the project
+### 2️⃣ Build the project
+
+```bash
 mvn clean install
+```
 
-3️⃣ Run the application
+### 3️⃣ Run the application
+
+```bash
 mvn spring-boot:run
+```
+
+---
+
+## 🧪 Testing Sensor Messages
+
+You can simulate UDP messages using:
+
+```bash
+echo -n "TEMP:45" | nc -u localhost 9999
+echo -n "HUM:10"  | nc -u localhost 9999
+```
+
+You should see reactive log output indicating threshold status.
+
+---
+
+## 🧬 Unit Testing
+
+Run tests with:
+
+```bash
+mvn test
+```
+
+
+---
