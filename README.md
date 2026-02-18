@@ -106,7 +106,6 @@ reactive-warehouse-monitoring/
 ├── src/main/java/com/example/warehouse
 │   ├── config/
 │   ├── listener/
-│   ├── model/
 │   ├── service/
 │   ├── simulator/
     ├── strategy/
