@@ -1,6 +1,7 @@
 package com.example.warehouse.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -10,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class WarehouseListener {
 
     private final CentralMonitoringService centralService;
@@ -18,7 +20,7 @@ public class WarehouseListener {
         Flux.<String>create(sink -> new Thread(() -> {
             try (DatagramSocket socket = new DatagramSocket(port)) {
                 byte[] buffer = new byte[1024];
-                System.out.println("UDP listener started on port " + port);
+               log.info("UDP listener started on port {} " ,port);
 
                 while (!sink.isCancelled()) {
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
