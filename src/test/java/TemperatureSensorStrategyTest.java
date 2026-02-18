@@ -14,6 +14,6 @@ class TemperatureSensorStrategyTest {
         props.setTemperature(temp);
 
         TemperatureSensor strategy = new TemperatureSensor(props);
-        strategy.checkThreshold("sensor_id=t1; value=36"); // should trigger alarm
+        strategy.checkThreshold("sensor_id=t1; value=36");
     }
 }
