@@ -14,3 +14,10 @@ warehouse:
         min-value: 40
         max-value: 54
         interval-ms: 7000
+    corbon:
+      port: 3356
+      threshold: 51
+      simulation:
+        min-value: 41
+        max-value: 55
+        interval-ms: 2000

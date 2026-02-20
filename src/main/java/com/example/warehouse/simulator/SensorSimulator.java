@@ -30,6 +30,11 @@ public class SensorSimulator {
         SensorData.SensorConfig hum = config.getHumidity();
         sendUdpMessage("sensor_id=h1; value=" + randomValue(hum.getSimulation()), hum.getPort());
     }
+    @Scheduled(initialDelayString = "0", fixedRateString = "#{@sensorData.humidity.simulation.intervalMs}")
+    public void sendCorbon() {
+        SensorData.SensorConfig co = config.getCorbon();
+        sendUdpMessage("sensor_id=co2; value=" + randomValue(co.getSimulation()), co.getPort());
+    }
 
     private int randomValue(SensorData.SensorConfig.Simulation sim) {
         return sim.getMinValue() + random.nextInt(sim.getMaxValue() - sim.getMinValue() + 1);
@@ -41,7 +46,7 @@ public class SensorSimulator {
             InetAddress address = InetAddress.getByName("localhost");
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, port);
             socket.send(packet);
-            log.info("Simulated message sent: {} to port {}", message, port);
+           // log.info("Simulated message sent: {} to port {}", message, port);
         } catch (Exception e) {
             log.error("Failed to send simulated message: {} to port {}", message, port, e);
         }

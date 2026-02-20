@@ -21,7 +21,7 @@ public class WarehouseListener {
         Flux.<String>create(sink -> new Thread(() -> {
             try (DatagramSocket socket = new DatagramSocket(port)) {
                 byte[] buffer = new byte[1024];
-               log.info("UDP listener started on port {} " ,port);
+               log.info("UDP listener started on port {}  for sensorType {} " ,port,sensorType);
 
                 while (!sink.isCancelled()) {
                     DatagramPacket packet = new DatagramPacket(buffer, buffer.length);

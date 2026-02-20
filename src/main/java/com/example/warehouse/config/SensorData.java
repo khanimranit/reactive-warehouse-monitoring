@@ -11,6 +11,7 @@ public class SensorData {
 
     private SensorConfig temperature;
     private SensorConfig humidity;
+    private SensorConfig corbon;
 
     @Data
     public static class SensorConfig {
