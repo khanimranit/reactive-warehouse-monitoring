@@ -35,6 +35,9 @@ public class WarehouseListener {
             } finally {
                 sink.complete();
             }
-        }, "udp-listener-" + port).start()).doOnNext(message -> centralService.receiveMeasurement(sensorType, message)).doOnError(Throwable::printStackTrace).subscribe();
+        }, "udp-listener-" + port).start())
+                        .doOnNext(message -> centralService.receiveMeasurement(sensorType, message))
+                        .doOnError(Throwable::printStackTrace)
+                         .subscribe();
     }
 }
