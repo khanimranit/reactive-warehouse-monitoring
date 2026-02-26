@@ -23,8 +23,8 @@ public class ReactiveWarehouseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		warehouseListener.startSensorListener(props.getTemperature().getPort(), "Temperature");
-		warehouseListener.startSensorListener(props.getHumidity().getPort(), "Humidity");
-		warehouseListener.startSensorListener(props.getCorbon().getPort(), "Corbon");
+		warehouseListener.startSensorListener(props.getTemperature().getPort(), "temperature");
+		warehouseListener.startSensorListener(props.getHumidity().getPort(), "humidity");
+		warehouseListener.startSensorListener(props.getCorbon().getPort(), "corbon");
 	}
 }
