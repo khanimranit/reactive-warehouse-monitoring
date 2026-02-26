@@ -21,3 +21,10 @@ warehouse:
         min-value: 41
         max-value: 55
         interval-ms: 2000
+    location:
+      port: 3357
+      threshold: 51
+      simulation:
+        min-value: 41
+        max-value: 55
+        interval-ms: 2000

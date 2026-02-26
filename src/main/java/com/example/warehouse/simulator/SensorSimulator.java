@@ -36,6 +36,12 @@ public class SensorSimulator {
         sendUdpMessage("sensor_id=co2; value=" + randomValue(co.getSimulation()), co.getPort());
     }
 
+    @Scheduled(initialDelayString = "0", fixedRateString = "#{@sensorData.location.simulation.intervalMs}")
+    public void sendLocationData() {
+        SensorData.SensorConfig co = config.getLocation();
+        sendUdpMessage("23; value=" + randomValue(co.getSimulation()), co.getPort());
+    }
+
     private int randomValue(SensorData.SensorConfig.Simulation sim) {
         return sim.getMinValue() + random.nextInt(sim.getMaxValue() - sim.getMinValue() + 1);
     }
