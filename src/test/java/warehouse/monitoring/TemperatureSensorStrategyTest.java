@@ -1,4 +1,4 @@
-package com.example.warehouse.strategy;
+package warehouse.monitoring;
 
 import com.example.warehouse.config.SensorData;
 import com.example.warehouse.sensors.TemperatureSensor;
