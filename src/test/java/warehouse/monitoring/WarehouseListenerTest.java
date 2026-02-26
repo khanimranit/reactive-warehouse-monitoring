@@ -37,6 +37,7 @@ class WarehouseListenerTest {
 
         listener.startSensorListener(port, sensorType);
 
+
         Thread.sleep(150);
 
         sendUdp("127.0.0.1", port, payload);
@@ -48,14 +49,17 @@ class WarehouseListenerTest {
     void shouldForwardMultipleMessages() throws Exception {
         int port = randomFreePort();
         String sensorType = "humidity";
-        String payload = "sensor_id=h1; value=30";
+        String payload1 = "sensor_id=h1; value=30";
+        String payload2 = "sensor_id=h1; value=80";
 
         listener.startSensorListener(port, sensorType);
         Thread.sleep(150);
 
-        sendUdp("127.0.0.1", port, payload);
+        sendUdp("127.0.0.1", port, payload1);
+        sendUdp("127.0.0.1", port, payload2);
 
-        verify(centralMonitoringService, timeout(3000)).receiveMeasurement(sensorType, payload);
+        verify(centralMonitoringService, timeout(3000)).receiveMeasurement(sensorType, payload1);
+        verify(centralMonitoringService, timeout(3000)).receiveMeasurement(sensorType, payload2);
     }
 
 
